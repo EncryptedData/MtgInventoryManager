@@ -15,10 +15,8 @@ internal static class Program
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddSerilog((services, lc) =>
-                lc.ReadFrom.Configuration(builder.Configuration).ReadFrom.Services(services).Enrich.FromLogContext()
-                    .WriteTo.Console());
-            
+            ConfigureServices(builder.Services, builder.Configuration);
+
             var app = builder.Build();
             app.UseSerilogRequestLogging();
 
@@ -34,5 +32,14 @@ internal static class Program
         {
             await Log.CloseAndFlushAsync();
         }
+    }
+
+    private static void ConfigureServices(IServiceCollection services, ConfigurationManager configuration)
+    {
+        services.AddSerilog((services, lc) =>
+            lc.ReadFrom.Configuration(configuration)
+                .ReadFrom.Services(services)
+                .Enrich.FromLogContext()
+                .WriteTo.Console());
     }
 }
