@@ -1,14 +1,31 @@
+using Serilog;
+
 namespace MtgInventoryManager;
 
-internal class Program
+internal static class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
-        var app = builder.Build();
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
 
-        app.MapGet("/", () => "Hello World!");
+        try
+        {
+            var builder = WebApplication.CreateBuilder(args);
+            var app = builder.Build();
 
-        app.Run();
+            app.MapGet("/", () => "Hello World!");
+
+            await app.RunAsync();
+        }
+        catch (Exception e)
+        {
+            Log.Fatal(e, $"Application caught exception in main");
+        }
+        finally
+        {
+            await Log.CloseAndFlushAsync();
+        }
     }
 }
