@@ -1,3 +1,5 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Serilog;
 
 namespace MtgInventoryManager;
@@ -14,6 +16,8 @@ internal static class Program
         try
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            ConfigureHost(builder.Host);
 
             ConfigureServices(builder.Services, builder.Configuration);
 
@@ -41,5 +45,12 @@ internal static class Program
                 .ReadFrom.Services(services)
                 .Enrich.FromLogContext()
                 .WriteTo.Console());
+    }
+
+    private static void ConfigureHost(ConfigureHostBuilder host)
+    {
+        host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+        host.ConfigureContainer<ContainerBuilder>(cb => cb.RegisterModule<MtgInventoryManagerModule>());
     }
 }
