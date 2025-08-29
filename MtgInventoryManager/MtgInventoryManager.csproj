@@ -11,4 +11,8 @@
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MtgInventoryManager.Controllers.ApiV1\MtgInventoryManager.Controllers.ApiV1.csproj" />
+  </ItemGroup>
+
 </Project>

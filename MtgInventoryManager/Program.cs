@@ -23,8 +23,7 @@ internal static class Program
 
             var app = builder.Build();
             app.UseSerilogRequestLogging();
-
-            app.MapGet("/", () => "Hello World!");
+            app.MapControllers();
 
             await app.RunAsync();
         }
@@ -45,6 +44,8 @@ internal static class Program
                 .ReadFrom.Services(services)
                 .Enrich.FromLogContext()
                 .WriteTo.Console());
+
+        services.AddControllers();
     }
 
     private static void ConfigureHost(ConfigureHostBuilder host)
