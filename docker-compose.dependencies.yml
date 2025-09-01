@@ -1,0 +1,15 @@
+services:
+  database:
+    image: postgres:17.6
+    volumes:
+      - MtgInventoryManagerDb:/var/lib/postgresql/data
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: MtgInventoryManager
+    ports:
+      - 5432:5432
+
+volumes:
+  MtgInventoryManagerDb:

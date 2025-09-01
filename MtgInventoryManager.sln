@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtgInventoryManager", "MtgI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtgInventoryManager.Controllers.ApiV1", "MtgInventoryManager.Controllers.ApiV1\MtgInventoryManager.Controllers.ApiV1.csproj", "{83316FBF-4BFD-4352-9E01-143A22C8BA60}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtgInventoryManager.Models", "MtgInventoryManager.Models\MtgInventoryManager.Models.csproj", "{15FAEC06-7FB6-4ADD-A05E-55E03453092C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtgInventoryManager.Common", "MtgInventoryManager.Common\MtgInventoryManager.Common.csproj", "{982106EA-54B6-4E2C-B710-1E436E45BCE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{83316FBF-4BFD-4352-9E01-143A22C8BA60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83316FBF-4BFD-4352-9E01-143A22C8BA60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83316FBF-4BFD-4352-9E01-143A22C8BA60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15FAEC06-7FB6-4ADD-A05E-55E03453092C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15FAEC06-7FB6-4ADD-A05E-55E03453092C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15FAEC06-7FB6-4ADD-A05E-55E03453092C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15FAEC06-7FB6-4ADD-A05E-55E03453092C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{982106EA-54B6-4E2C-B710-1E436E45BCE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982106EA-54B6-4E2C-B710-1E436E45BCE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982106EA-54B6-4E2C-B710-1E436E45BCE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982106EA-54B6-4E2C-B710-1E436E45BCE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
