@@ -45,7 +45,8 @@ internal static class Program
                 .Enrich.FromLogContext()
                 .WriteTo.Console());
 
-        services.AddControllers();
+        services.AddControllers()
+            .AddNewtonsoftJson();
     }
 
     private static void ConfigureHost(ConfigureHostBuilder host)
