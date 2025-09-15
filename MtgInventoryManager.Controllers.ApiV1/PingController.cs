@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MtgInventoryManager.Models.Persistence;
 
 namespace MtgInventoryManager.Controllers.ApiV1;
 
@@ -9,6 +10,7 @@ public class PingController : ControllerBase
     [HttpGet]
     public IActionResult OnGet()
     {
-        return Ok("pong");
+        var card = new Card(); 
+        return Ok(card);
     }
 }
