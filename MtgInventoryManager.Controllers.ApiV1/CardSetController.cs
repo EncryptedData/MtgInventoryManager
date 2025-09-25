@@ -24,10 +24,33 @@ public class CardSetController : ControllerBase
         return Ok(await db.CardSets.ToListAsync());
     }
 
+    [HttpGet("{setKey}")]
+    public async Task<IActionResult> GetByIdAsync(string setKey)
+    {
+        await using var db = _dbFactory.Create();
+        var cardSet = await db.CardSets.FirstOrDefaultAsync(x => x.SetKey == setKey);
+        
+        if (cardSet is null)
+        {
+            return NotFound();
+        }
+        
+        CardSetDto dto = new()
+        {
+            Id = cardSet.Id,
+            SetKey = cardSet.SetKey,
+            ReleaseDate = cardSet.ReleaseDate,
+            DisplayName = cardSet.DisplayName,
+            NumberOfCardsInSet = cardSet.NumberOfCardsInSet,
+        };
+        
+        return Ok(dto);
+    }
+
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] CardSetDto cardSetDto)
     {
-        CardSet cardSet = new CardSet()
+        var cardSet = new CardSet()
         {
             Id = cardSetDto.Id,
             SetKey = cardSetDto.SetKey,
@@ -45,4 +68,32 @@ public class CardSetController : ControllerBase
         await db.SaveChangesAsync();
         return Created();
     }
+    
+    [HttpPut("{setKey}")]
+    public async Task<IActionResult> UpdateCardSet(string setKey, CardSetDto cardSetDto)
+    {
+        if (setKey != cardSetDto.SetKey)
+        {
+            return BadRequest();
+        }
+        
+        await using var db = _dbFactory.Create();
+        var cardSet = await db.CardSets.FirstOrDefaultAsync(x => x.SetKey == cardSetDto.SetKey);
+
+        if (cardSet is null)
+        {
+            return NotFound();
+        }
+        
+        cardSet.DisplayName = cardSetDto.DisplayName;
+        cardSet.NumberOfCardsInSet = cardSetDto.NumberOfCardsInSet;
+        cardSet.ReleaseDate = cardSetDto.ReleaseDate;
+
+        db.CardSets.Update(cardSet);
+        await db.SaveChangesAsync();
+        return Ok();
+    }
+    
+    // [HttpDelete("{setKey}")]
+    // Delete Function Goes Here
 }
